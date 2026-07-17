@@ -10,15 +10,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '21'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.12'
+
+      - name: Generate wrapper (CI needs it)
+        run: |
+          cd IDEA && gradle wrapper --gradle-version 8.12 || true
+          cd ../Pycharm && gradle wrapper --gradle-version 8.12 || true
+
       - name: Build IDEA plugin
         run: cd IDEA && ./gradlew buildPlugin
+
       - name: Build PyCharm plugin
         run: cd Pycharm && ./gradlew buildPlugin
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
