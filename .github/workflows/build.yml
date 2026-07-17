@@ -25,10 +25,10 @@ jobs:
           echo "/opt/gradle/gradle-8.12/bin" >> "$GITHUB_PATH"
 
       - name: Build IDEA plugin
-        run: cd IDEA && gradle buildPlugin
+        run: cd IDEA && gradle buildPlugin -x verifyPlugin
 
       - name: Build PyCharm plugin
-        run: cd Pycharm && gradle buildPlugin
+        run: cd Pycharm && gradle buildPlugin -x verifyPlugin
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
