@@ -17,21 +17,18 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.12'
-
-      - name: Generate wrapper (CI needs it)
+      - name: Install Gradle 8.12
         run: |
-          cd IDEA && gradle wrapper --gradle-version 8.12 || true
-          cd ../Pycharm && gradle wrapper --gradle-version 8.12 || true
+          curl -fsSL https://services.gradle.org/distributions/gradle-8.12-bin.zip -o /tmp/gradle-8.12-bin.zip
+          mkdir -p /opt/gradle
+          unzip -q /tmp/gradle-8.12-bin.zip -d /opt/gradle
+          echo "/opt/gradle/gradle-8.12/bin" >> "$GITHUB_PATH"
 
       - name: Build IDEA plugin
-        run: cd IDEA && ./gradlew buildPlugin
+        run: cd IDEA && gradle buildPlugin
 
       - name: Build PyCharm plugin
-        run: cd Pycharm && ./gradlew buildPlugin
+        run: cd Pycharm && gradle buildPlugin
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
