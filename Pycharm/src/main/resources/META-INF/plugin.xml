@@ -1,0 +1,69 @@
+<!--
+  @author 琼台师范学院万象大模型研究社 Piggy
+  @data 2026-07-17
+  @verson v0.5
+-->
+<idea-plugin>
+  <id>com.coder.typing-time-counter</id>
+  <name>码字计时器 · 摸鱼休息提醒</name>
+  <!-- TODO 上架前把 email 换成社团能收验证邮件的真实邮箱，url 换成社团主页/仓库地址 -->
+  <vendor email="785360014@qq.com" url="https://qtnu.edu.cn">琼台师范学院万象大模型研究社 Piggy</vendor>
+
+  <!-- 插件图标：Marketplace 与 IDE 内均使用（键盘+时钟，寓意码字计时） -->
+  <icon>icons/icon-keyboard-clock.svg</icon>
+
+  <description><![CDATA[
+    <!-- ===================== 中文版 ===================== -->
+    <p>还在用「我感觉今天码了不少」自我安慰？装上它，你的摸鱼和爆肝都将被无情计量。🐷</p>
+    <p>一个蹲在 IDE 里陪你肝代码的小工具，专治「不知道自己到底敲了多少」的现代病：</p>
+    <ul>
+      <li>📊 <b>码字计数</b>：今日 / 累计码了多少字、肝了多久、手速（CPM）几何。别再说「我写了好多」，让数据打脸。</li>
+      <li>⏰ <b>幽默休息提醒</b>：连续码到设定时长，它弹个沙雕气泡催你起来晃晃，拯救你的颈椎和屁股。可「已休息」打卡，也能「再战一会」贪睡 5 分钟。</li>
+      <li>🎆 <b>强打字动效</b>：专属「码字舞台」把每次按键变成上飘光点、流动弹幕与炸裂大字——打工也能打出仪式感，键盘敲出蹦迪味。</li>
+      <li>🤫 <b>全程不枯燥</b>：状态栏和提醒文案全是梗，陪你笑着重构人生（和代码）。</li>
+    </ul>
+    <p>数据全存在你本地 IDE 配置里，绝不上传，社恐友好。打开右侧「码字计时器」工具窗，随时围观自己的辉煌战绩。</p>
+    <p>装上它，今晚周报「工作时长」一栏，终于有底气了。💪</p>
+    <p>👋 <b>作者的话</b>：这是我作为新人开发者的第一个小作品（v0.5，2026-07-17），难免有不完善的地方。如果它能给你的敲码日常带来一点点乐趣，就是我最大的动力！欢迎大家放心试用，也非常期待你的反馈——后续我会持续打磨、优化、加新功能，请多多支持，一起把它养大～ 🌱</p>
+    <hr/>
+    <!-- ===================== English ===================== -->
+    <p><b>Typing &amp; Time Counter · Fun Break Reminder</b></p>
+    <p>Still comforting yourself with "I feel like I coded a lot today"? Install this, and both your slacking and your grinding will be mercilessly measured. 🐷</p>
+    <p>A tiny sidekick that sits in your IDE and cures the modern disease of "no idea how much I actually typed":</p>
+    <ul>
+      <li>📊 <b>Typing counter</b>: today's / total characters, active time, and speed (CPM). Let the data do the talking.</li>
+      <li>⏰ <b>Funny break reminder</b>: after you grind for a set time, a cheeky bubble nudges you to stand up and save your neck and back. Tap "Done resting", or "Snooze" for a few more minutes.</li>
+      <li>🎆 <b>Punchy typing effects</b>: a dedicated "Typing Stage" turns every keystroke into rising sparks, flowing danmaku and bursting big characters — coding with a sense of ceremony.</li>
+      <li>🤫 <b>Never boring</b>: the status bar and reminders are full of jokes, so you can refactor your life (and your code) with a smile.</li>
+    </ul>
+    <p>All data stays in your local IDE config and is never uploaded. Open the "Typing Timer" tool window on the right to watch your own glorious stats.</p>
+    <p>👋 <b>A note from the author</b>: This is my very first little project as a beginner developer (v0.5, 2026-07-17), so it's surely not perfect yet. If it brings a bit of fun to your coding day, that's my greatest motivation! Feel free to give it a try, and I'd love your feedback — I'll keep polishing, improving and adding features. Thanks for your support, let's grow it together～ 🌱</p>
+    <p><small>作者 / Author：琼台师范学院万象大模型研究社 Piggy · v0.5 · 2026-07-17</small></p>
+  ]]></description>
+
+  <change-notes><![CDATA[
+    <ul>
+      <li>0.5 — 首次发布：码字计数、时间计数、固定时间幽默休息提醒、码字舞台强动效、休息倒计时圆环、设置项与本地持久化。</li>
+    </ul>
+  ]]></change-notes>
+
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <icon icon="TypingCounterIcon" def="/icons/icon-keyboard-clock.svg"/>
+
+    <applicationService serviceImplementation="com.coder.typingtime.TypingCounterService"/>
+
+    <applicationConfigurable
+        instance="com.coder.typingtime.BreakSettingsConfigurable"
+        id="com.coder.typingtime.settings"
+        displayName="码字计时 &amp; 休息提醒"/>
+
+    <toolWindow id="码字计时器" anchor="right" icon="TypingCounterIcon"
+                factoryClass="com.coder.typingtime.TypingToolWindowFactory"/>
+
+    <notificationGroup id="TypingTimeNotifications" displayType="BALLOON"/>
+
+    <postStartupActivity implementation="com.coder.typingtime.InitActivity"/>
+  </extensions>
+</idea-plugin>

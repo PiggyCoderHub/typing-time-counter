@@ -1,0 +1,20 @@
+# ===== Gradle =====
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# ===== IntelliJ IDEA / 各 IDE 用户配置 =====
+.idea/
+*.iml
+*.iml.bak
+out/
+
+# ===== 操作系统 =====
+.DS_Store
+Thumbs.db
+
+# ===== WorkBuddy 项目内部数据（不入库） =====
+.workbuddy/
+
+# ===== 日志 =====
+*.log
