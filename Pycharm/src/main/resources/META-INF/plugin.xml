@@ -5,7 +5,7 @@
 -->
 <idea-plugin>
   <id>com.coder.typing-time-counter</id>
-  <name>码字计时器 · 摸鱼休息提醒</name>
+  <name>Typing & Time Counter - Fun Break Reminder</name>
   <!-- TODO 上架前把 email 换成社团能收验证邮件的真实邮箱，url 换成社团主页/仓库地址 -->
   <vendor email="785360014@qq.com" url="https://qtnu.edu.cn">琼台师范学院万象大模型研究社 Piggy</vendor>
 
@@ -13,6 +13,8 @@
   <icon>icons/icon-keyboard-clock.svg</icon>
 
   <description><![CDATA[
+    <p><b>Typing & Time Counter</b> is a fun IntelliJ plugin that counts your keystrokes, tracks active coding time, reminds you to take humorous breaks with punchy typing effects, and keeps you motivated with meme-filled status messages. All data stays 100% local.</p>
+    <hr/>
     <!-- ===================== 中文版 ===================== -->
     <p>还在用「我感觉今天码了不少」自我安慰？装上它，你的摸鱼和爆肝都将被无情计量。🐷</p>
     <p>一个蹲在 IDE 里陪你肝代码的小工具，专治「不知道自己到底敲了多少」的现代病：</p>
